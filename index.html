@@ -11,17 +11,17 @@
 <pre> 
 
 form
-    {'<br/>', (label {+{ class => "haha" }, "this bollocks X " }), (input_check qw( foo pouet class tata) ),
+    {'<br/>', (label {+{ class => "haha" }, "this bollocks X " }), (input_check qw( foo pouet class tata checked checked ) ),
     ,'<br/>', (label {+{ class => "haha" }, "this bollocks A " }), (input_check qw( foo pouet class bar) ),
-    ,'<br/>', (label {+{ class => "haha" }, "this bollocks Z " }), (input_check qw( foo pouet class tata) ),
+    ,'<br/>', (label {+{ class => "haha" }, "this bollocks Z " }), (input_check qw( foo pouet checked checked ), class => "tata haha" ),
     ,'<br/>', (label {+{ class => "haha" }, "this bollocks" }), (input_check qw( foo pouet class bang) ),
     (input_button qw( doWhatMean )),
     (input_submit "vtff")
 } 
 
-</pre>
+</pre> 
 
-<form><br/><label class="haha">this bollocks X </label><input name="foo" type="checkbox" value="pouet" class="tata"/><br/><label class="haha">this bollocks A </label><input value="pouet" type="checkbox" name="foo" class="bar"/><br/><label class="haha">this bollocks Z </label><input value="pouet" type="checkbox" name="foo" class="tata"/><br/><label class="haha">this bollocks</label><input class="bang" type="checkbox" name="foo" value="pouet"/><input type="button" name="doWhatMean"/><input type="submit" name="vtff"/></form>
+<form><br/><label class="haha">this bollocks X </label><input type="checkbox" checked="checked" class="tata" name="foo" value="pouet"/><br/><label class="haha">this bollocks A </label><input type="checkbox" class="bar" name="foo" value="pouet"/><br/><label class="haha">this bollocks Z </label><input class="tata haha" checked="checked" value="pouet" name="foo" type="checkbox"/><br/><label class="haha">this bollocks</label><input type="checkbox" name="foo" value="pouet" class="bang"/><input name="doWhatMean" type="button"/><input type="submit" name="vtff"/></form>
 
 
 <script src="behave.js"></script>
