@@ -5,6 +5,7 @@
 * work on panels, console and selector,
   eventually keyboard driven (keyboard.js?) 
 
+<code><pre>
     ---------------- 
     | M            |  M = Menu
     ----------------  S = Submenu
@@ -19,20 +20,14 @@
     | L            |
     ---------------- 
 
+</pre></code>
+
 * ask `#livescript@freenode.net`: is there an effort to make such a lib? 
 
 # goals
 
-I *hate* web developpement … i always did for a lot of reasons i won't argue
-there. One of them is the inefficiency of the web technologies to produce what
-i really expect when i code (enlightenment, fun, joy, proud). I always see the
-web application developpement as a massive bag of crack and klugdes on the top
-of a publication platteform. There are plenty of good^wpragmatic reasons for that 
-to happen and a modern UX developper have just no choice but know a little bit
-of web.
-
-Pocamix is the weaving i'll use to test everything i expect to enjoy writting
-web apps at some points. which are:
+Pocamix is the weaving to gather a collection of tools that fit my expectations 
+in term of fun, productivity and results.
 
 ## remove javascript
 
@@ -76,7 +71,7 @@ through phrases the way vim does.
 * compile-time coherence checking 
 * no extra spaces and comments in the output
 * [acmeic](http://acmeism.org) because
-    * i want to be abble to generate code both from serverside and clientside
+    * i want to be able to generate code both from serverside and clientside
     * i want to share code with my pythonists, perl5 and 6 mongers, rubists 
 
 (see SE(xml) experiment)
