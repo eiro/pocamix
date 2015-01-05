@@ -20,9 +20,29 @@ label {
     background-color: pink;
 }
 
+body div
+{
+    display: inline-block;
+}
+
+#ex2 ul 
+{
+    display: inline-block;
+    list-style-type: none;
+}
 
 
-
+#ex2 {
+    background-color: black;
+    color: white;
+    height: 100%;
+//     position: relative;
+//     left: 0px;
+//     top: 0px; 
+// 
+//     // z-index: 100;
+//     // display: inline-block;
+}
 
 
 

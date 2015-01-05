@@ -1,0 +1,62 @@
+use XML::Tag::html5;
+'<!DOCTYPE html>', html {
+    head
+    { ( meta_ qw( charset utf-8 ))
+    , ( http_equiv qw( x-ua-compatible ie=edge ))
+    , ( meta_content viewport => 
+        "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"  )
+    , (map import_css, qw( 
+            ./unsemantic.css
+            ./theme.css
+            http://fonts.googleapis.com/css?family=Orbitron))
+    , title { "homepages are useless" }
+    },
+
+    body { 
+
+        # experiment 1: behave.js tests
+
+        div { +{qw( id ex2 )},
+
+            ul { +{qw( id m1 )},
+                map {li{$_}}
+                ( "vos groupes"
+                , "autres groupes"
+                , 
+                )
+            },
+
+            ul { +{qw( id m2 )},
+                map {li{$_}}
+                ( "administration"
+                , "modération"
+                , "archives"
+                , "infos"
+                , "publication"
+                , "RSS"
+                )
+            },
+
+        },
+
+        div { +{qw( id ex1 )},
+            form
+            { br_ , (label {+{ class => "haha" }, "this bollocks X " }), (input_check qw( foo pouet class tata checked checked ) ),
+            , br_ , (label {+{ class => "haha" }, "this bollocks A " }), (input_check qw( foo pouet class bar) ),
+            , br_ , (label {+{ class => "haha" }, "this bollocks Z " }), (input_check qw( foo pouet checked checked ), class => "tata haha" ),
+            , br_ , (label {+{ class => "haha" }, "this bollocks" }), (input_check qw( foo pouet class bang) )
+            , (input_button qw( doWhatMean ))
+            , (input_submit "vtff")
+            },
+        },
+
+
+
+
+
+        # experiment 2: side-menu
+
+
+        import_js "behave.js"
+    }
+}
