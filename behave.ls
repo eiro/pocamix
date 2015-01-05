@@ -1,10 +1,11 @@
+
+
 whenDocumentLoaded = (f) ->
     document.addEventListener \DOMContentLoaded, f
 
-whenEver = (eventType,selector,f) ->
-    for el in document.querySelectorAll selector =>
+whenEver = (eventType,selector,f) !->
+    for el in document.querySelectorAll selector
         el.addEventListener eventType, f, false
-    true
 
 GET = (params) -> console.log {
     "would be an ajax request some day" : params
