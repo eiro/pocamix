@@ -1,10 +1,9 @@
 export SHELL = /bin/zsh
 
-
 index.html: behave.js
 
 %.js: %.ls
-	livescript -c $<
+	lsc -c $<
 
 %.html: %.htmlx
 	p5x html5 < $< > $@

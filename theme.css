@@ -20,28 +20,28 @@ label {
     background-color: pink;
 }
 
-body div
-{
-    display: inline-block;
+body div {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    background-color: #eee;
 }
 
-#ex2 ul 
-{
+#menu ul {
     display: inline-block;
     list-style-type: none;
 }
 
+#menu, #menu ul {
+    visibility: hidden;
+}
 
-#ex2 {
+
+#menu {
+    z-index: 100;
     background-color: black;
     color: white;
     height: 100%;
-//     position: relative;
-//     left: 0px;
-//     top: 0px; 
-// 
-//     // z-index: 100;
-//     // display: inline-block;
 }
 
 

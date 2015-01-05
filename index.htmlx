@@ -14,9 +14,9 @@ use XML::Tag::html5;
 
     body { 
 
-        # experiment 1: behave.js tests
 
-        div { +{qw( id ex2 )},
+        # experiment 2: side-menu
+        div { +{qw( id menu )},
 
             ul { +{qw( id m1 )},
                 map {li{$_}}
@@ -39,7 +39,11 @@ use XML::Tag::html5;
 
         },
 
-        div { +{qw( id ex1 )},
+        # experiment 1: behave.js tests
+
+        div { +{qw( id behave )},
+            span { +{qw( id menuButton )}, "(M)" },
+
             form
             { br_ , (label {+{ class => "haha" }, "this bollocks X " }), (input_check qw( foo pouet class tata checked checked ) ),
             , br_ , (label {+{ class => "haha" }, "this bollocks A " }), (input_check qw( foo pouet class bar) ),
@@ -49,12 +53,6 @@ use XML::Tag::html5;
             , (input_submit "vtff")
             },
         },
-
-
-
-
-
-        # experiment 2: side-menu
 
 
         import_js "behave.js"
