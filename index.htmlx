@@ -12,8 +12,7 @@ use XML::Tag::html5;
     , title { "homepages are useless" }
     },
 
-    body { 
-
+    body {
 
         # experiment 2: side-menu
         div { +{qw( id menu )},
@@ -37,6 +36,13 @@ use XML::Tag::html5;
                 )
             },
 
+            ul { +{qw( id m3 )},
+                map {li{$_}}
+                ( "propriétaires"
+                , "modérateurs"
+                )
+            },
+
         },
 
         # experiment 1: behave.js tests
@@ -54,7 +60,9 @@ use XML::Tag::html5;
             },
         },
 
-
-        import_js "behave.js"
+        map import_js, qw(
+            http://www.preludels.com/prelude-browser-min.js
+            behave.js
+        )
     }
 }
