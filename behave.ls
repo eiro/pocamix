@@ -33,7 +33,7 @@ theMatch   = (selector, from=document) -> from.querySelector selector
 theMatches = (selector, from=document) -> from.querySelectorAll selector
 
 whenever = (eventType,element,f) !->
-    element.addEventListener eventType, f, false
+    element.addEventListener eventType, f, true
 
 toggleDisplay = (el) ->
     el.display =
@@ -42,23 +42,28 @@ toggleDisplay = (el) ->
         else "none"
 
 whenever \DOMContentLoaded, document, (e) ->
+    console.log "Woot"
+    (the \main ).addEventListener \click, ((e) -> console.log "menu true"  ; false ), false
+    (the \main ).addEventListener \click, ((e) -> console.log "menu false" ; false ), false
+    # document.addEventListener \click, ((e) -> console.log "doc true"       ; false ), false
+    # document.addEventListener \click, ((e) -> console.log "doc false"      ; false ), false
 
-    whenever \click, (the \menu), (e) ->
-        src = e.target
-        if src.tagName == "dt"
-        then
-            sib = src.nextSibling
-            if sib
-            then toggleDisplay src.nextSibling
-            else
-                console.log "missing nextSibling for ": sib
+    # whenever \click, (the \menu), (e) ->
+    #     src = e.target
+    #     if src.tagName == "dt"
+    #     then
+    #         sib = src.nextSibling
+    #         if sib
+    #         then toggleDisplay src.nextSibling
+    #         else
+    #             console.log "missing nextSibling for ": sib
 
-    whenever \click, document, (e) ->
-        switch e.target.id
-        | \menuButton =>
-            the \menu .style.visibility = \visible
-        | otherwise =>
-            console.log "never caught": e 
+    # whenever \click, document, (e) ->
+    #     switch e.target.id
+    #     | \menuButton =>
+    #         the \menu .style.visibility = \visible
+    #     | otherwise =>
+    #         console.log "never caught": e 
 
 # whenDocumentLoaded = (f) ->
 #     document.addEventListener \DOMContentLoaded, f
