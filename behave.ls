@@ -15,7 +15,14 @@
 # plus: this binding returns "Netscape" as navigator.appName
 #     click: (e) ->
 #         console.log "no need for IE stuff as #{navigator.appName} detected a click": e
-#
+# documentHandles = (list) ->
+#     document.addEventListener \DOMContentLoaded, !->
+#         menus = theMatches '#menu ul'
+# 
+#         list |> obj-to-pairs |> map ([e,cb]) ->
+#             document.addEventListener e, cb, false
+
+# http://davidwalsh.name/event-delegate
 
 { obj-to-pairs, map } = require 'prelude-ls'
 
@@ -25,30 +32,33 @@ theTags    = (name    , from=document) -> from.getElementsByTagName name
 theMatch   = (selector, from=document) -> from.querySelector selector
 theMatches = (selector, from=document) -> from.querySelectorAll selector
 
-documentHandles = (list) ->
-    document.addEventListener \DOMContentLoaded, !->
-        list |> obj-to-pairs |> map ([e,cb]) ->
-            document.addEventListener e, cb, false
+whenever = (eventType,element,f) !->
+    element.addEventListener eventType, f, false
 
-documentHandles {
+toggleDisplay = (el) ->
+    el.display =
+        if el.display == "none"
+        then ""
+        else "none"
 
-    click: (e) ->
+whenever \DOMContentLoaded, document, (e) ->
 
+    whenever \click, (the \menu), (e) ->
+        src = e.target
+        if src.tagName == "dt"
+        then
+            sib = src.nextSibling
+            if sib
+            then toggleDisplay src.nextSibling
+            else
+                console.log "missing nextSibling for ": sib
+
+    whenever \click, document, (e) ->
         switch e.target.id
         | \menuButton =>
-            m = the \menu
-            [m, theMatch \ul, m ] |>
-                map (.style.visibility = \visible)
-
-        | \HAHA => console.log "HAHA"
-
-
+            the \menu .style.visibility = \visible
         | otherwise =>
-            console.log "WTF ? click in the middle of nowhere": e
- 
-
-}
-
+            console.log "never caught": e 
 
 # whenDocumentLoaded = (f) ->
 #     document.addEventListener \DOMContentLoaded, f

@@ -1,4 +1,7 @@
 use XML::Tag::html5;
+use strict;
+use warnings qw( FATAL );
+
 '<!DOCTYPE html>', html {
     head
     { ( meta_ qw( charset utf-8 ))
@@ -13,41 +16,43 @@ use XML::Tag::html5;
     },
 
     body {
+        my ( $items, $dl );
 
-        # experiment 2: side-menu
-        div { +{qw( id menu )},
+        $items = sub {
+            my ( $k, $v ) = @{ $_[0] };
+            dt {$k}
+            , dd {
+                my $ref = ref $v;
+                if    ( $ref eq 'ARRAY' ) { $dl->( $v ) }
+                elsif ( $ref eq 'HASH' ) {
+                    link_to $$v{href}
+                    , ( $$v{alt} ||
+                        $$v{href} ||
+                        die
+                    )
+                }
+                else { die "unexpected $ref" }
+            }
+        }; 
 
-            ul { +{qw( id m1 )},
-                map {li{$_}}
-                ( "vos groupes"
-                , "autres groupes"
-                , 
-                )
-            },
+        $dl = sub {
+            my ( $dl ) = @_;
+            dl { map $items->( $_ ), @$dl }
+        };
 
-            ul { +{qw( id m2 )},
-                map {li{$_}}
-                ( "administration"
-                , "modération"
-                , "archives"
-                , "infos"
-                , "publication"
-                , "RSS"
-                )
-            },
+        my $menu = 
+        [ [ admin => 
+              [ [ configurer =>
+                      [ ["diffusion/réception" => {href=>"/", alt=>"alt" }]
+                      , ["définition" => {href => "/"}]]]]]
+        , [ admin2 => 
+              [ [ configurer =>
+                      [ ["diffusion/réception" => {href=>"/", alt=>"alt" }]
+                      , ["définition" => {href => "/"}]]]]]
+          ];
 
-            ul { +{qw( id m3 )},
-                map {li{$_}}
-                ( "propriétaires"
-                , "modérateurs"
-                )
-            },
-
-        },
-
-        # experiment 1: behave.js tests
-
-        div { +{qw( id behave )},
+        div { +{qw( id menu )},  $dl->( $menu ) }, 
+        div { +{qw( id main )},
             span { +{qw( id menuButton )}, "(M)" },
 
             form
@@ -57,7 +62,8 @@ use XML::Tag::html5;
             , br_ , (label {+{ class => "haha" }, "this bollocks" }), (input_check qw( foo pouet class bang) )
             , (input_button qw( doWhatMean ))
             , (input_submit "vtff")
-            },
+            }, 
+
         },
 
         map import_js, qw(
