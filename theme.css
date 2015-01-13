@@ -27,23 +27,21 @@ body div {
     background-color: #eee;
 }
 
-#menu ul {
-    display: inline-block;
-    list-style-type: none;
-}
-
-#menu, #menu ul {
-    visibility: hidden;
-}
-
-
 #menu {
+    padding: 1em;
     z-index: 100;
     background-color: black;
     color: white;
     height: 100%;
+    width: 20em;
+}
+
+#menu dd {
+    margin-left: 1em;
 }
 
 
-
+.hidden {
+    display: none;
+}
 

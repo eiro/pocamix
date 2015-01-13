@@ -35,18 +35,48 @@ theMatches = (selector, from=document) -> from.querySelectorAll selector
 whenever = (eventType,element,f) !->
     element.addEventListener eventType, f, true
 
-toggleDisplay = (el) ->
-    el.display =
-        if el.display == "none"
-        then ""
-        else "none"
+xxx           = (el) -> console.log el
+hide          = (el) -> el.classList.add('hidden')
+show          = (el) -> el.classList.remove('hidden')
+toggleDisplay = (el) -> el.classList.toggle('hidden')
 
 whenever \DOMContentLoaded, document, (e) ->
-    console.log "Woot"
-    (the \main ).addEventListener \click, ((e) -> console.log "menu true"  ; false ), false
-    (the \main ).addEventListener \click, ((e) -> console.log "menu false" ; false ), false
-    # document.addEventListener \click, ((e) -> console.log "doc true"       ; false ), false
-    # document.addEventListener \click, ((e) -> console.log "doc false"      ; false ), false
+
+    menu = the \menu
+    hide menu
+    for el in theTags \dd,menu
+        hide el
+
+    whenever \click, document, (e) ->
+        t = e.target
+        switch t.id
+        | \menuButton =>
+            show (the \menu)
+        | otherwise =>
+            console.log "suzy classe!"
+
+    whenever \click, (the \menu), (e) ->
+        t = e.target
+        xxx {
+            "origin": t
+            "tagname": t.tagName
+            "nextSibling": t.nextSibling
+        }
+
+        switch t.tagName
+        | \DT =>
+            toggleDisplay t.nextSibling
+            console.log t.nextSibling
+            false
+        | otherwise =>
+            console.log "suzy maeve"
+            true
+
+# this snippet shows that the event goes from document to menu then back
+    # (the \main ).addEventListener \click, ((e) -> console.log "menu true"  ; true ), true
+    # (the \main ).addEventListener \click, ((e) -> console.log "menu false" ; true ), false
+    # document.addEventListener \click, ((e) -> console.log "document true"  ; true ), true
+    # document.addEventListener \click, ((e) -> console.log "document false" ; true ), false
 
     # whenever \click, (the \menu), (e) ->
     #     src = e.target
