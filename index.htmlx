@@ -68,6 +68,7 @@ use warnings qw( FATAL );
 
         map import_js, qw(
             http://www.preludels.com/prelude-browser-min.js
+            https://rawgithub.com/dmauro/Keypress/master/keypress.js
             behave.js
         )
     }

@@ -21,10 +21,8 @@
 # 
 #         list |> obj-to-pairs |> map ([e,cb]) ->
 #             document.addEventListener e, cb, false
-
 # http://davidwalsh.name/event-delegate
-
-{ obj-to-pairs, map } = require 'prelude-ls'
+# { obj-to-pairs, map } = require 'prelude-ls'
 
 the        = (id      , from=document) -> from.getElementById id
 theClass   = (name    , from=document) -> from.getElementsByClass name
@@ -40,33 +38,32 @@ hide          = (el) -> el.classList.add('hidden')
 show          = (el) -> el.classList.remove('hidden')
 toggleDisplay = (el) -> el.classList.toggle('hidden')
 
-whenever \DOMContentLoaded, document, (e) ->
+whenever \DOMContentLoaded, document, (e) !->
 
     menu = the \menu
     hide menu
     for el in theTags \dd,menu
         hide el
 
+    listener = new window.keypress.Listener!
+
+    listener.simple_combo "space", !->
+        toggleDisplay menu
+
     whenever \click, document, (e) ->
         t = e.target
         switch t.id
         | \menuButton =>
-            show (the \menu)
+            show menu
         | otherwise =>
             console.log "suzy classe!"
 
     whenever \click, (the \menu), (e) ->
         t = e.target
-        xxx {
-            "origin": t
-            "tagname": t.tagName
-            "nextSibling": t.nextSibling
-        }
 
         switch t.tagName
         | \DT =>
             toggleDisplay t.nextSibling
-            console.log t.nextSibling
             false
         | otherwise =>
             console.log "suzy maeve"
