@@ -1,11 +1,69 @@
 % Pocamix
 
-# todo
+Pocamix is the weaving experimentation to:
 
-* work on panels, console and selector,
-  eventually keyboard driven (keyboard.js?) 
+* spot and experiment good javascript/css habits
+  * transcripters: livescript, clojurescript, perl6 backend? 
+  * practices
+    * event delegation
+    * strictness
+    * library/namespace management
+    * tips/tricks
+  * libs
+    * keyboard handle ([Keypress](https://github.com/dmauro/Keypress/) now
+      tested)
+    * communications with the outside world (ajax, websocket, sereal, ...)
+    * graphing (high-level libraries over D3?)
+* serve as a playground to the SExml experient (YA templating approach)
+* try to produce UIs that fits the needs of experimented users
+  (keyboard driven with class, then mouse user friendly). 
 
-<code><pre>
+You can see more details in the "Goals" section
+
+# Experiments
+
+## slides system
+
+having a simple slides system 
+
+* by default, everything is a grid of thumbnails (current div is enlightened
+  and hjkl to navigate).
+* starting presentation is setting
+  * a current slide with display fullscreen
+  * accessors and animations for next/previous slides 
+
+## keyboard driven fancy menus
+
+* ps menu style: show submenus as panes panes
+  overlaping the workspace as deploying.
+
+    ------------------------  W = Workspace
+    | W                    | 
+    |                      |
+    |                      |
+    |                      |
+    |                      |
+    |                      |
+    |                      |
+    ------------------------  
+
+    ------------------------  A = top level menu
+    |A  | B | C | W        |  B = submenu
+    |   |   |   |          |  C = sub-submenu
+    |   |   |   |          |  W = Workspace
+    |   |   |   |          |
+    |   |   |   |          |
+    |   |   |   |          |
+    |   |   |   |          |
+    ------------------------
+
+* everything must be keyboard *and* mouse driven
+
+## Many panels
+
+be sure layouts can be nested (just with inline-block?) and navigate between 
+them with `<space>w[jhkl]`
+
     ---------------- 
     | M            |  M = Menu
     ----------------  S = Submenu
@@ -19,15 +77,6 @@
     ---------------- 
     | L            |
     ---------------- 
-
-</pre></code>
-
-* ask `#livescript@freenode.net`: is there an effort to make such a lib? 
-
-# goals
-
-Pocamix is the weaving to gather a collection of tools that fit my expectations 
-in term of fun, productivity and results.
 
 ## remove javascript
 
