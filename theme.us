@@ -1,12 +1,17 @@
-header h1 {
-    font-family: 'Orbitron', sans-serif;
-    border-bottom: solid 1px black; 
-    margin-bottom: 1em;
-}
-q { quotes: "“" "”" "‘" "’"; } 
-* { font-family: Sans-Serif; text-decoration: none }
+header h1
+    font-family 'Orbitron', sans-serif
+    border-bottom solid 1px black
+    margin-bottom 1em
 
-section > h1 {
+q
+    quotes "“" "”" "‘" "’"
+
+* 
+    font-family Sans-Serif
+    text-decoration: none
+
+
+section > h1 
     border-bottom: solid 1px black;
     // text-shadow: 2px 2px 30px #0f0;
 }
@@ -49,16 +54,7 @@ body, div {
     color: white;
 }
 
-#main {
-    height: 100%;
-    width: 100%;
-}
-
 .hidden {
     display: none;
-}
-
-.slide {
-    display: block;
 }
 

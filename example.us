@@ -1,0 +1,13 @@
+
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
+soblack()
+    border arguments black
+
+body
+    soblack(solid 1px) 
+    border-radius(5px)
+

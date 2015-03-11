@@ -24,8 +24,9 @@
 # http://davidwalsh.name/event-delegate
 # { obj-to-pairs, map } = require 'prelude-ls'
 
+
 the        = (id      , from=document) -> from.getElementById id
-theClass   = (name    , from=document) -> from.getElementsByClass name
+theClass   = (name    , from=document) -> from.getElementsByClassName name
 theTags    = (name    , from=document) -> from.getElementsByTagName name
 theMatch   = (selector, from=document) -> from.querySelector selector
 theMatches = (selector, from=document) -> from.querySelectorAll selector
@@ -34,22 +35,38 @@ whenever = (eventType,element,f) !->
     element.addEventListener eventType, f, true
 
 xxx           = (el) -> console.log el
-hide          = (el) -> el.classList.add('hidden')
-show          = (el) -> el.classList.remove('hidden')
-toggleDisplay = (el) -> el.classList.toggle('hidden')
+hide          = (el) -> el.classList.add     \hidden
+show          = (el) -> el.classList.remove  \hidden
+toggleDisplay = (el) -> el.classList.toggle  \hidden
+
+isActive      = (el) ->
+    show el
+    el.classList.add \active
+unActive      = (el) ->
+    hide el
+    el.classList.remove \active
+
+theActive = -> (theClass \active)[0]
 
 whenever \DOMContentLoaded, document, (e) !->
 
     menu = the \menu
     hide menu
-    for el in theTags \dd,menu
+
+    # theMatch'#main:last-child' .style.BackgroundColor = \blue
+    # (the \main).lastChild.style.backgroundColor = \blue
+    # test relative size vw :)
+
+    for el in theTags \dd, menu
         hide el
 
-    listener = new window.keypress.Listener!
+    for el in theMatches '#main > div:not(.menuButton)'
+        hide el
 
-    listener.simple_combo "space", !->
-        toggleDisplay menu
-
+    l = the \menuButton
+    show l
+    isActive l.nextSibling
+    
     whenever \click, document, (e) ->
         t = e.target
         switch t.id
@@ -68,6 +85,15 @@ whenever \DOMContentLoaded, document, (e) !->
         | otherwise =>
             console.log "suzy maeve"
             true
+
+    k = new Kibo!
+    k.up \any, -> theActive!.innerHTML = "you typed " + k.lastKey!
+
+
+
+    # whenever \keyup, document, (e) ->
+    #     xxx {"typed": e }
+
 
 # this snippet shows that the event goes from document to menu then back
     # (the \main ).addEventListener \click, ((e) -> console.log "menu true"  ; true ), true

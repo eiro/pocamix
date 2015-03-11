@@ -1,4 +1,5 @@
 use XML::Tag::html5;
+use Devel::SimpleTrace;
 use Eirotic;
 use experimental 'lexical_subs';
 
@@ -20,17 +21,21 @@ my sub page(&) {
     body { $stash->() }
 } };
 
-my sub slides (&;@) {
-    my ( $tag, $code, $attrs ) = ( div => @_ );
-    $attrs ||= {};
-    XML::Tag::tag $tag, $code, do {
-        if ( %$attrs ) {
-            for ($$attrs{class} ) {
-                if (length) { $_.=" slide"}
-                else        { $_="slide"  }
-            }
-        }
-    }
+my sub slide (&;@) {
+    "this is mulder"
+    # div => @_
+#     # my ( $tag, $code, $attrs ) = ( div => @_ );  
+#     # die YAML::Dump [ $tag, $code, $attrs ];
+#     # $attrs ||= {};
+#     # XML::Tag::tag $tag, $code
+#     # , do {
+#     #     if ( %$attrs ) {
+#     #         for ($$attrs{class} ) {
+#     #             if (length) { $_.=" slide"}
+#     #             else        { $_="slide"  }
+#     #         }
+#     #     }
+#     # }
 }
 
 page {
@@ -70,15 +75,22 @@ page {
 
     div { +{qw( id menu )},  $dl->( $menu ) },  
     div { +{qw( id main )},
-        div { +{qw( id menuButton )}, "_" }, 
+        div { +{qw( id menuButton )}, "_" },
+        div {
+            h1{"hello"}
+        },
+        div {
+            h1{"hello 2"}
+        }
     },
 
-
+        # https://rawgithub.com/dmauro/Keypress/master/keypress.js
+        # curl -s https://raw.githubusercontent.com/marquete/kibo/master/kibo.min.js > kibo.js 
 
     map import_js, qw(
         http://www.preludels.com/prelude-browser-min.js
-        https://rawgithub.com/dmauro/Keypress/master/keypress.js
         behave.js
+        kibo.js
     )
 }
 
